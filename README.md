@@ -1,7 +1,9 @@
-# SimCLR
-A PyTorch implementation of SimCLR based on the paper [A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709).
+# SimCLR generalization
+This repository is based on a PyTorch implementation of SimCLR based on the paper [A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709) https://github.com/leftthomas/SimCLR
 
 ![Network Architecture image from the paper](structure.png)
+
+We add more architectures to this repository
 
 ## Requirements
 - [Anaconda](https://www.anaconda.com/download/)
@@ -20,13 +22,19 @@ pip install thop
 ## Usage
 ### Train SimCLR
 ```
-python main.py --batch_size 1024 --epochs 1000 
-optional arguments:
+python main.py --batch_size 1024 --epochs 1000 --classifiername mCNN_k_bn_cifar10 --conv_channels 64 --wandb_project_name simclr_archs --wandb_api_key_path <you_api_path> --savepath <where_to_save>
+
+Arguments:
 --feature_dim                 Feature dim for latent vector [default value is 128]
 --temperature                 Temperature used in softmax [default value is 0.5]
 --k                           Top k most similar images used to predict the label [default value is 200]
 --batch_size                  Number of images in each mini-batch [default value is 512]
 --epochs                      Number of sweeps over the dataset to train [default value is 500]
+--classifiername 	      Name of the classifier architecture [mCNN_k_bn_cifar10, resnet18k_cifar]
+--conv_channels 	      Width of the ResNet or mCNN 
+--wandb_project_name	      Name of the wandb project
+--wandb_api_key_path	      Path to your wandb API key
+--savepath		      Directory to store results			
 ```
 
 ### Linear Evaluation
